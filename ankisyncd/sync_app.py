@@ -86,7 +86,7 @@ class SyncCollectionHandler(anki.sync.Syncer):
     def meta(self, v=None, cv=None):
         if self._old_client(cv):
             return Response(status=501)  # client needs upgrade
-        if v > SYNC_VER:
+        if v > 10:
             return {"cont": False, "msg": "Your client is using unsupported sync protocol ({}, supported version: {})".format(v, SYNC_VER)}
         if v < 9 and self.col.schedVer() >= 2:
             return {"cont": False, "msg": "Your client doesn't support the v{} scheduler.".format(self.col.schedVer())}
